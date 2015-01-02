@@ -1,1 +1,6 @@
 licensekey.pro.user
+*.pro.user
+*.pro.user.*
+debug/
+release/
+Makefile

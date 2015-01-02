@@ -1,0 +1,5 @@
+To build this project you gonna need Qt5 installed and QtCreator.
+Open the project with QtCreator and build it in release and debug modes.
+In each folder release/debug modes is a MakeFile and go to a terminal console and type:
+make install
+to install the files in the official library folders of Linux: usr/include/ and usr/lib/
