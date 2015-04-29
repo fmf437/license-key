@@ -1,5 +1,3 @@
 ﻿*.pro.user
 *.pro.user.*
-debug/
-release/
 licensekey.pro.user

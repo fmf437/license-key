@@ -1,15 +1,13 @@
-License-Key
-===========
+### License-Key
 
 Copyright (C) 2014 2015 Filipe Marques eagle.software3@gmail.com
-LicenseKey is a C++ library that you can use to protect your program with key hash string.
-This project uses the ISO Standard C++11 .
 
-Check the examples folder for learn more!
+LicenseKey is a C++ library that you can use to protect your program with key hash string and is licensed under GNU GPL v.3.
+This project uses the ISO Standard C++11.
 
-LicenseKey is licensed under GNU GPL v.3 what means that you can use this C++ library in free & open source software.
-If you gonna use this software library in proprietary software a copy of this software need to be purchase. 
-Please contact me, if this is the case and note that this library is in Ubuntu Software Apps to be purchase if you use Ubuntu!
+LicenseKey is a header-only library that has no external dependencies, therefore it can be directly used in any project, without the need for a build or installation step.
 
-The folder examples/ contain a simple console app teaching the use of this library in static/shared 
-debug mode or static/shared release mode.
+In the header file there are comments to document what every method does.
+Your project must be licensed under GNU GPL v.3.
+
+#### Consider make a donation, for futher development, for [eagle.software3@gmail.com](eagle.software3@gmail.com) at PayPal.

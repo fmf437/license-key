@@ -20,56 +20,19 @@
 #	MA 02110-1301, USA.
 #
 
-win32 {
-    QT -= core gui
-    CONFIG -= qt gui
-    # -std=c++11
-    CONFIG += c++11
-    TARGET = licensekey
-    TEMPLATE = lib
-
-    # for shared lib - comment this
-    CONFIG += staticlib
-
-    VERSION = 1.0.0
-}
-
-
-unix {
-    QT -= core gui
-    CONFIG -= qt gui
-    CONFIG -= app_bundle
-    TARGET = licensekey
-    TEMPLATE = lib
-    # -std=c++11
-    CONFIG += c++11
-
-    #CONFIG += staticlib
-    CONFIG += shared
-
-    VERSION = 1.0.0
-
-    DESTDIR = bin
-
-    OBJECTS_DIR = obj
-}
-
+QT -= core gui
+CONFIG -= core qt gui
+CONFIG += c++11
+TARGET = licensekey
+TEMPLATE = lib
+CONFIG += shared
+CONFIG += release
+VER_MAJ = 2
+VER_MIN = 0
+VER_PAT = 0
+DESTDIR = bin
+OBJECTS_DIR = obj
 DEFINES += LICENSEKEY_LIBRARY
-
-HEADERS += \
-    LicenseKey/licensekey.hpp \
-    LicenseKey/LicenseKey/hashkey.hpp \
-    LicenseKey/LicenseKey/inoutkey.hpp \
-    LicenseKey/LicenseKey/listcomparekeys.hpp \
-
-SOURCES += \
-    source/hashkey.cpp \
-    source/inoutkey.cpp \
-    source/listcomparekeys.cpp \
-
-unix {
-    target.path = /usr/lib
-    target.files = licensekey/bin/*
-    target.files = LicenseKey/*
-    INSTALLS += target
-}
+HEADERS += LicenseKey/LicenseKey.hpp
+SOURCES += LicenseKey/LicenseKey.cpp
+QMAKE_CXXFLAGS += -s
