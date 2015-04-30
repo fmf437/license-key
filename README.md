@@ -10,4 +10,4 @@ LicenseKey is a header-only library that has no external dependencies, therefore
 In the header file there are comments to document what every method does.
 Your project must be licensed under GNU GPL v.3.
 
-#### Consider make a donation, for futher development, for [eagle.software3@gmail.com](eagle.software3@gmail.com) at PayPal.
+#### Consider make a donation, for futher development, for eagle(dot)software3(at)gmail(dot)com at PayPal.
