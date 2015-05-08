@@ -30,31 +30,31 @@
 // lk - licensekey namespace
 namespace lk
 {
-    LicenseKey::LicenseKey(const std::map<std::string, std::string> &m)
-    {
-        key.clear();
-        output.clear();
-        read_result.clear();
-        filePath.clear();
-        fileName.clear();
-        key = std::move(m);
-    }
-	
+	LicenseKey::LicenseKey(const std::map<std::string, std::string> &m)
+	{
+		key.clear();
+		output.clear();
+		read_result.clear();
+		filePath.clear();
+		fileName.clear();
+		key = std::move(m);
+	}
+
 	LicenseKey::~LicenseKey()
-    {
-    }
+	{
+	}
 	
 	// show the map size
 	void LicenseKey::showSize()
 	{
 		std::cout << key.size() << "\n";
 	}
-
-    // set filename with extension: filename.bin - default: key.bin
-    void LicenseKey::setFileName(std::string filename)
-    {
-        fileName = filename;
-    }
+	
+	// set filename with extension: filename.bin - default: key.bin
+	void LicenseKey::setFileName(std::string filename)
+	{
+		fileName = filename;
+	}
 	
 	// write in a file a hashed key
 	void LicenseKey::writeHashKey(std::string Value)
@@ -64,7 +64,9 @@ namespace lk
 		{
 			std::cout << "File not open - on write!" << "\n";
 		}
+#ifdef _WIN32
 		Value = encryptDecrypt(Value);
+#endif
 		file_write << Value;
 		file_write.flush();
 		file_write.close();
@@ -85,7 +87,9 @@ namespace lk
 			read_result += res;
 			res.clear();
 		}
+#ifdef _WIN32
 		read_result = encryptDecrypt(read_result);
+#endif
 		file_read.close();
 		return read_result;
 	}
@@ -116,10 +120,10 @@ namespace lk
 	void LicenseKey::setFilePath(std::string file)
 	{
 		filePath = file;
-        if(fileName.empty())
-            filePath.append("key.bin");
-        else
-            filePath.append(fileName);
+		if(fileName.empty())
+			filePath.append("key.bin");
+		else
+			filePath.append(fileName);
 		//std::cout << filePath << "\n";
 	}
 	
@@ -142,14 +146,16 @@ namespace lk
 		return false;
 	}
 	
+#ifdef _WIN32
 	//method to encrypt or decrypt
 	std::string LicenseKey::encryptDecrypt(std::string toEncryptDecrypt)
 	{
 		//Any chars will work, in an array of any size
-        char keyDEncrypt[12] = {'1','3','5','7','9','3','2','4','6','8','A','b'};
+		char keyDEncrypt[12] = {'1','3','5','7','9','3','2','4','6','8','A','b'};
 		output = toEncryptDecrypt;
 		for (unsigned int i = 0; i < toEncryptDecrypt.size(); i++)
-            output[i] = toEncryptDecrypt[i] ^ keyDEncrypt[i % (sizeof(keyDEncrypt) / sizeof(char))];
-        return output;
+			output[i] = toEncryptDecrypt[i] ^ keyDEncrypt[i % (sizeof(keyDEncrypt) / sizeof(char))];
+		return output;
 	}
+#endif
 }

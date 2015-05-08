@@ -1,0 +1,7 @@
+set(LIB_HEADERS LicenseKey.hpp)
+set(LIB_SOURCES LicenseKey.cpp)
+set_source_files_properties(${LIB_SOURCES} PROPERTIES LANGUAGE CXX)
+set(CMAKE_BUILD_TYPE Release CACHE STRING "default to release" FORCE)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR})
+add_library(licensekey SHARED ${LIB_SOURCES} ${LIB_HEADERS})
+set_target_properties(licensekey PROPERTIES VERSION 2.0.0)

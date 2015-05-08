@@ -1,0 +1,7 @@
+cmake_minimum_required(VERSION 2.8)
+project(licensekey)
+set(LIBRARY_OUTPUT_PATH bin)
+set(CMAKE_INSTALL_PREFIX "/usr/")
+include_directories(LicenseKey)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s -std=c++11 -O2 -Wall -Wextra -Werror")
+add_subdirectory(LicenseKey)
