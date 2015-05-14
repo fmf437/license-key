@@ -57,23 +57,21 @@ namespace lk
 	}
 	
 	// write in a file a hashed key
-	void LicenseKey::writeHashKey(std::string Value)
+    void LicenseKey::writeHashKey(std::string Value, const std::string passPhrase)
 	{
 		std::ofstream file_write(filePath.data(), std::ios_base::binary);
 		if(!file_write.is_open())
 		{
 			std::cout << "File not open - on write!" << "\n";
 		}
-#ifdef _WIN32
-		Value = encryptDecrypt(Value);
-#endif
+        Value = encryptDecrypt(Value, passPhrase);
 		file_write << Value;
 		file_write.flush();
 		file_write.close();
 	}
 	
 	// read the hashed key from the same file
-	std::string LicenseKey::readHashKey()
+    std::string LicenseKey::readHashKey(const std::string passPhrase)
 	{
 		std::string res;
 		std::ifstream file_read(filePath.data(), std::ios_base::binary);
@@ -87,9 +85,7 @@ namespace lk
 			read_result += res;
 			res.clear();
 		}
-#ifdef _WIN32
-		read_result = encryptDecrypt(read_result);
-#endif
+        read_result = encryptDecrypt(read_result, passPhrase);
 		file_read.close();
 		return read_result;
 	}
@@ -146,16 +142,12 @@ namespace lk
 		return false;
 	}
 	
-#ifdef _WIN32
-	//method to encrypt or decrypt
-	std::string LicenseKey::encryptDecrypt(std::string toEncryptDecrypt)
+    // member function to encrypt or decrypt
+    std::string LicenseKey::encryptDecrypt(std::string toEncryptDecrypt, const std::string passPhrase)
 	{
-		//Any chars will work, in an array of any size
-		char keyDEncrypt[12] = {'1','3','5','7','9','3','2','4','6','8','A','b'};
 		output = toEncryptDecrypt;
 		for (unsigned int i = 0; i < toEncryptDecrypt.size(); i++)
-			output[i] = toEncryptDecrypt[i] ^ keyDEncrypt[i % (sizeof(keyDEncrypt) / sizeof(char))];
+            output[i] = toEncryptDecrypt[i] ^ passPhrase[i % (sizeof(passPhrase) / sizeof(char))];
 		return output;
-	}
-#endif
+    }
 }

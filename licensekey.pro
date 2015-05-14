@@ -30,9 +30,14 @@ CONFIG += release
 VER_MAJ = 2
 VER_MIN = 0
 VER_PAT = 0
-#DESTDIR = bin
-#OBJECTS_DIR = obj
+DESTDIR = bin
+OBJECTS_DIR = obj
 DEFINES += LICENSEKEY_LIBRARY
 HEADERS += LicenseKey/LicenseKey.hpp
 SOURCES += LicenseKey/LicenseKey.cpp
 QMAKE_CXXFLAGS += -s
+
+#unix: LIBS += -L$$PWD/../../../../usr/lib/ -lbotan-1.11
+
+#INCLUDEPATH += $$PWD/../../../../usr/include/botan-1.11/
+#DEPENDPATH += $$PWD/../../../../usr/include/botan-1.11/
